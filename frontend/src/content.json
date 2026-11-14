@@ -1,0 +1,982 @@
+{
+  "glossary": [
+    {
+      "istilah": "Harga beli",
+      "arti": "Uang yang dikeluarkan untuk mendapatkan barang.",
+      "sinonim": [
+        "modal",
+        "harga pokok",
+        "dibeli dengan harga",
+        "membeli seharga"
+      ]
+    },
+    {
+      "istilah": "Harga jual",
+      "arti": "Uang yang diterima saat barang dijual lagi.",
+      "sinonim": [
+        "dijual seharga",
+        "laku terjual",
+        "ditawarkan seharga"
+      ]
+    },
+    {
+      "istilah": "Untung",
+      "arti": "Terjadi jika harga jual lebih besar dari harga beli.",
+      "sinonim": []
+    },
+    {
+      "istilah": "Rugi",
+      "arti": "Terjadi jika harga jual lebih kecil dari harga beli.",
+      "sinonim": []
+    },
+    {
+      "istilah": "Impas",
+      "arti": "Harga jual sama dengan harga beli.",
+      "sinonim": []
+    },
+    {
+      "istilah": "Persen (%)",
+      "arti": "Artinya per seratus. 25% = 25 per 100.",
+      "sinonim": []
+    }
+  ],
+  "materi": [
+    {
+      "id": "m1",
+      "judul": "Kenalan: Harga Beli dan Harga Jual",
+      "body": [
+        "Bayangkan kamu jualan di kantin sekolah.",
+        "**Harga beli** = uang yang kamu keluarkan untuk mendapatkan barang.",
+        "**Harga jual** = uang yang kamu terima saat barang itu dijual lagi."
+      ],
+      "contoh": "Beli gorengan Rp10.000, lalu dijual Rp12.000.",
+      "scene": {
+        "type": "kios",
+        "beli": 10000,
+        "jual": 12000
+      },
+      "cek": null
+    },
+    {
+      "id": "m2",
+      "judul": "Satu Arti, Banyak Kata",
+      "body": [
+        "Di soal, harga beli dan harga jual sering ditulis dengan kata lain. Artinya tetap sama.",
+        "Tanya ke diri sendiri: uang ini **keluar** atau **masuk**?"
+      ],
+      "dua_kolom": {
+        "kiri_judul": "Harga beli (uang keluar)",
+        "kiri": [
+          "modal",
+          "harga pokok",
+          "dibeli dengan harga",
+          "membeli seharga"
+        ],
+        "kanan_judul": "Harga jual (uang masuk)",
+        "kanan": [
+          "dijual seharga",
+          "laku terjual",
+          "ditawarkan seharga"
+        ]
+      },
+      "cek": {
+        "tanya": "Di soal tertulis: \"Modal Rp20.000\". Modal berarti...",
+        "opsi": [
+          "Harga jual",
+          "Harga beli"
+        ],
+        "jawab": 1,
+        "benar": "Tepat! Modal adalah uang yang keluar untuk membeli barang.",
+        "salah": "Belum tepat. Modal itu uang yang keluar di awal, jadi harga beli."
+      }
+    },
+    {
+      "id": "m3",
+      "judul": "Bandingkan Dua Harga",
+      "body": [
+        "Sebelum menghitung, bandingkan dulu harga jual dan harga beli.",
+        "Harga jual **lebih besar** dari harga beli → **untung**.",
+        "Harga jual **lebih kecil** dari harga beli → **rugi**.",
+        "Harga jual **sama** dengan harga beli → **impas**."
+      ],
+      "contoh": "Beli Rp10.000, jual Rp12.000. Rp12.000 lebih besar, jadi untung.",
+      "scene": {
+        "type": "bars",
+        "beli": 10000,
+        "jual": 12000
+      },
+      "cek": {
+        "tanya": "Dibeli Rp15.000, dijual Rp13.000. Hasilnya?",
+        "opsi": [
+          "Untung",
+          "Rugi",
+          "Impas"
+        ],
+        "jawab": 1,
+        "benar": "Benar! 13.000 lebih kecil dari 15.000, jadi rugi.",
+        "salah": "Bandingkan lagi: harga jual 13.000 lebih kecil dari harga beli 15.000."
+      }
+    },
+    {
+      "id": "m4",
+      "judul": "Berapa Untung atau Ruginya?",
+      "body": [
+        "Untung = harga jual − harga beli.",
+        "Rugi = harga beli − harga jual.",
+        "Kurangkan angka yang besar dengan yang kecil, supaya hasilnya tidak negatif."
+      ],
+      "contoh": "Beli Rp50.000, jual Rp42.000. Rugi = 50.000 − 42.000 = Rp8.000.",
+      "scene": {
+        "type": "bars",
+        "beli": 50000,
+        "jual": 42000
+      },
+      "cek": {
+        "tanya": "Beli Rp40.000, jual Rp46.000. Berapa untungnya?",
+        "opsi": [
+          "Rp6.000",
+          "Rp86.000",
+          "Rp46.000"
+        ],
+        "jawab": 0,
+        "benar": "Betul! 46.000 − 40.000 = Rp6.000.",
+        "salah": "Untung dicari dengan mengurangi: harga jual − harga beli."
+      }
+    },
+    {
+      "id": "m5",
+      "judul": "Persentase Untung dan Rugi",
+      "body": [
+        "Tanda % artinya **per seratus**.",
+        "Persentase untung = untung ÷ harga beli × 100%.",
+        "Persentase rugi = rugi ÷ harga beli × 100%.",
+        "Dua rumus ini hampir sama. Pembaginya **selalu harga beli**. Bedanya hanya di atas: untung atau rugi."
+      ],
+      "contoh": "Beli Rp10.000, untung Rp2.000. 2.000 ÷ 10.000 = 0,2. Lalu 0,2 × 100% = 20%.",
+      "cek": {
+        "tanya": "Beli Rp50.000, untung Rp5.000. Persentase untungnya?",
+        "opsi": [
+          "5%",
+          "10%",
+          "90%"
+        ],
+        "jawab": 1,
+        "benar": "Yes! 5.000 ÷ 50.000 = 0,1 → 10%.",
+        "salah": "Bagi untung dengan harga beli: 5.000 ÷ 50.000 = 0,1. Lalu kali 100%."
+      }
+    },
+    {
+      "id": "m6",
+      "judul": "Banyak Barang: Hitung Totalnya",
+      "body": [
+        "Kalau barangnya lebih dari satu, kalikan harga satu barang dengan jumlahnya.",
+        "Total harga beli = jumlah × harga beli per barang.",
+        "Total hasil penjualan = jumlah × harga jual per barang.",
+        "Untung seluruhnya = total hasil penjualan − total harga beli."
+      ],
+      "contoh": "5 botol, beli Rp3.000 dan jual Rp4.000 per botol. Total beli 15.000, total jual 20.000, untung Rp5.000.",
+      "cek": {
+        "tanya": "Membeli 6 buah, harga beli Rp2.000 per buah. Total harga belinya?",
+        "opsi": [
+          "Rp8.000",
+          "Rp12.000"
+        ],
+        "jawab": 1,
+        "benar": "Tepat! 6 × 2.000 = Rp12.000.",
+        "salah": "Kalikan jumlah dengan harga per buah: 6 × 2.000."
+      }
+    },
+    {
+      "id": "m7",
+      "judul": "Mencari Harga Jual dari Persen Untung",
+      "body": [
+        "Kalau pedagang ingin untung sekian persen, hitung dulu untungnya.",
+        "Untung = persen untung × harga beli.",
+        "Harga jual = harga beli + untung.",
+        "Kalau ditanya harga jual satu barang, bagi total harga jual dengan jumlah barang."
+      ],
+      "contoh": "Beli 10 barang Rp100.000, ingin untung 10%. Untung 10.000, harga jual 110.000, per barang Rp11.000.",
+      "cek": {
+        "tanya": "Harga beli Rp200.000, ingin untung 10%. Berapa harga jualnya?",
+        "opsi": [
+          "Rp210.000",
+          "Rp220.000",
+          "Rp20.000"
+        ],
+        "jawab": 1,
+        "benar": "Benar! Untung 20.000, jadi harga jual 200.000 + 20.000 = Rp220.000.",
+        "salah": "Untungnya 10% × 200.000 = 20.000. Harga jual = harga beli + untung."
+      }
+    },
+    {
+      "id": "m8",
+      "judul": "4 Langkah Menyelesaikan Soal",
+      "body": [
+        "1. Baca soal, cari **harga beli**.",
+        "2. Cari **harga jual**.",
+        "3. **Bandingkan** keduanya: untung, rugi, atau impas.",
+        "4. **Hitung** nilainya, dan persentasenya jika ditanya.",
+        "Tidak semua angka dipakai. Coret angka yang tidak berhubungan dengan uang beli dan jual."
+      ],
+      "cek": null
+    }
+  ],
+  "game": {
+    "judul": "Kantin Sortir",
+    "petunjuk": "Geser kartu ke jawaban yang tepat: ini harga beli atau harga jual?",
+    "terms": [
+      {
+        "id": "g1",
+        "text": "modal",
+        "role": "beli",
+        "illustration": ["👩‍🍳", "🥣", "💸"],
+        "contoh": "Ani punya modal Rp5.000 untuk membeli bahan gorengan."
+      },
+      {
+        "id": "g2",
+        "text": "dijual seharga",
+        "role": "jual",
+        "illustration": ["🧑‍🍳", "🍩", "💵"],
+        "contoh": "Gorengan itu dijual seharga Rp7.000."
+      },
+      {
+        "id": "g3",
+        "text": "harga pokok",
+        "role": "beli",
+        "illustration": ["🥛", "📦", "🪙"],
+        "contoh": "Harga pokok satu kotak susu adalah Rp4.000."
+      },
+      {
+        "id": "g4",
+        "text": "laku terjual",
+        "role": "jual",
+        "illustration": ["🥛", "🤝", "💵"],
+        "contoh": "Susu itu laku terjual Rp5.000."
+      },
+      {
+        "id": "g5",
+        "text": "dibeli dengan harga",
+        "role": "beli",
+        "illustration": ["🍞", "🛍️", "🪙"],
+        "contoh": "Roti dibeli dengan harga Rp9.000."
+      },
+      {
+        "id": "g6",
+        "text": "ditawarkan seharga",
+        "role": "jual",
+        "illustration": ["🍞", "🏷️", "💵"],
+        "contoh": "Roti ditawarkan seharga Rp11.000."
+      },
+      {
+        "id": "g7",
+        "text": "uang yang dikeluarkan untuk membeli barang",
+        "role": "beli",
+        "illustration": ["👛", "➡️", "🛒"],
+        "contoh": "Ini uang yang keluar dari dompet penjual."
+      },
+      {
+        "id": "g8",
+        "text": "uang yang diterima dari pembeli",
+        "role": "jual",
+        "illustration": ["🛍️", "➡️", "👛"],
+        "contoh": "Ini uang yang masuk ke dompet penjual."
+      }
+    ]
+  },
+  "questions": [
+    {
+      "id": "q1",
+      "no": 1,
+      "indikator": "Mathematical Reasoning",
+      "indikator_arti": "Membandingkan, memberi alasan, dan mengambil keputusan.",
+      "roles": [
+        {
+          "id": "a_beli",
+          "label": "Harga beli A"
+        },
+        {
+          "id": "a_jual",
+          "label": "Harga jual A"
+        },
+        {
+          "id": "b_beli",
+          "label": "Harga beli B"
+        },
+        {
+          "id": "b_jual",
+          "label": "Harga jual B"
+        }
+      ],
+      "story": [
+        {
+          "t": "Dua pedagang menjual tas dengan jenis dan kualitas yang sama. Pedagang A membeli sebuah tas seharga "
+        },
+        {
+          "t": "Rp80.000",
+          "role": "a_beli"
+        },
+        {
+          "t": " dan menjualnya seharga "
+        },
+        {
+          "t": "Rp100.000",
+          "role": "a_jual"
+        },
+        {
+          "t": ". Sementara itu, Pedagang B membeli sebuah tas seharga "
+        },
+        {
+          "t": "Rp90.000",
+          "role": "b_beli"
+        },
+        {
+          "t": " dan menjualnya seharga "
+        },
+        {
+          "t": "Rp117.000",
+          "role": "b_jual"
+        },
+        {
+          "t": ". Seorang pembeli berpendapat bahwa Pedagang A memperoleh keuntungan lebih besar karena harga jual tasnya lebih rendah dibandingkan Pedagang B. Apakah pendapat tersebut benar? Bandingkan keuntungan dalam rupiah dan persentase dari kedua pedagang. Jelaskan alasanmu!"
+        }
+      ],
+      "steps": [
+        {
+          "jenis": "isian",
+          "tahap": 2,
+          "judul": "Menghitung keuntungan Pedagang A",
+          "tanya": "Berapa keuntungan Pedagang A?",
+          "fields": [
+            {
+              "label": "Keuntungan A",
+              "jawab": 20000,
+              "awalan": "Rp",
+              "akhiran": "",
+              "salah": {
+                "180000": "Itu hasil menjumlahkan. Untung dicari dengan mengurangi.",
+                "100000": "Itu harga jualnya, bukan keuntungannya."
+              }
+            }
+          ],
+          "h1": "Untung = harga jual − harga beli.",
+          "h2": "Hitung 100.000 − 80.000.",
+          "jelas": "100.000 − 80.000 = Rp20.000."
+        },
+        {
+          "jenis": "isian",
+          "tahap": 3,
+          "judul": "Menghitung keuntungan Pedagang B",
+          "tanya": "Berapa keuntungan Pedagang B?",
+          "fields": [
+            {
+              "label": "Keuntungan B",
+              "jawab": 27000,
+              "awalan": "Rp",
+              "akhiran": "",
+              "salah": {
+                "207000": "Itu hasil menjumlahkan. Untung dicari dengan mengurangi.",
+                "117000": "Itu harga jualnya, bukan keuntungannya."
+              }
+            }
+          ],
+          "h1": "Untung = harga jual − harga beli.",
+          "h2": "Hitung 117.000 − 90.000.",
+          "jelas": "117.000 − 90.000 = Rp27.000."
+        },
+        {
+          "jenis": "pilihan",
+          "tahap": 4,
+          "judul": "Membandingkan keuntungan",
+          "tanya": "Dalam rupiah, siapa yang untungnya lebih besar?",
+          "opsi": [
+            {
+              "t": "Pedagang A, Rp20.000",
+              "why": "Rp20.000 lebih kecil dari Rp27.000."
+            },
+            {
+              "t": "Pedagang B, Rp27.000",
+              "why": null
+            },
+            {
+              "t": "Sama besar",
+              "why": "Kedua keuntungan tidak sama."
+            }
+          ],
+          "jawab": 1,
+          "h1": "Bandingkan Rp20.000 dengan Rp27.000.",
+          "h2": "Mana angka yang lebih besar?",
+          "jelas": "Rp27.000 lebih besar daripada Rp20.000, jadi Pedagang B lebih untung dalam rupiah."
+        },
+        {
+          "jenis": "isian",
+          "tahap": 5,
+          "judul": "Menghitung persentase keuntungan",
+          "tanya": "Berapa persentase keuntungan masing-masing?",
+          "fields": [
+            {
+              "label": "Pedagang A",
+              "jawab": 25,
+              "awalan": "",
+              "akhiran": "%",
+              "salah": {
+                "20": "Kamu membagi dengan harga jual (100.000). Pembagi persentase untung adalah harga beli.",
+                "20000": "Itu keuntungan dalam rupiah. Bagi dengan harga beli lalu kali 100%."
+              }
+            },
+            {
+              "label": "Pedagang B",
+              "jawab": 30,
+              "awalan": "",
+              "akhiran": "%",
+              "salah": {
+                "23.08": "Kamu membagi dengan harga jual (117.000). Pembagi persentase untung adalah harga beli.",
+                "27000": "Itu keuntungan dalam rupiah. Bagi dengan harga beli lalu kali 100%."
+              }
+            }
+          ],
+          "h1": "Persentase untung = untung ÷ harga beli × 100%.",
+          "h2": "A: 20.000 ÷ 80.000. B: 27.000 ÷ 90.000. Lalu kali 100%.",
+          "jelas": "A = 20.000 ÷ 80.000 × 100% = 25%. B = 27.000 ÷ 90.000 × 100% = 30%."
+        },
+        {
+          "jenis": "pilihan",
+          "tahap": 6,
+          "judul": "Menyimpulkan",
+          "tanya": "Apakah pendapat pembeli itu benar?",
+          "opsi": [
+            {
+              "t": "Benar. Pedagang A untung lebih besar karena harga jualnya lebih rendah.",
+              "why": "Harga jual yang rendah tidak berarti untung besar. Yang dibandingkan adalah keuntungannya."
+            },
+            {
+              "t": "Tidak benar. Pedagang B untung lebih besar, baik dalam rupiah (Rp27.000) maupun persentase (30%).",
+              "why": null
+            },
+            {
+              "t": "Benar dalam persentase, tetapi salah dalam rupiah.",
+              "why": "Persentase A (25%) justru lebih kecil dari B (30%)."
+            }
+          ],
+          "jawab": 1,
+          "h1": "Lihat hasil tahap 4 (rupiah) dan tahap 5 (persen).",
+          "h2": "B unggul di rupiah dan di persen.",
+          "jelas": "Pendapat pembeli tidak benar. B untung lebih besar dalam rupiah dan persentase."
+        }
+      ],
+      "solution": [
+        "Diketahui: A beli Rp80.000, jual Rp100.000. B beli Rp90.000, jual Rp117.000.",
+        "Untung A = 100.000 − 80.000 = Rp20.000.",
+        "Untung B = 117.000 − 90.000 = Rp27.000.",
+        "Rp27.000 > Rp20.000, jadi B lebih untung dalam rupiah.",
+        "Persen A = 20.000 ÷ 80.000 × 100% = 25%. Persen B = 27.000 ÷ 90.000 × 100% = 30%.",
+        "Kesimpulan: pendapat pembeli tidak benar. B untung lebih besar dalam rupiah dan persentase."
+      ],
+      "mark_hints": [
+        "Baca kata di dekat setiap angka. Tanyakan: angka ini menunjukkan apa?",
+        "Harga beli = uang keluar untuk membeli. Harga jual = uang masuk dari penjualan. Perhatikan juga jumlah barang dan persen."
+      ],
+      "steps_total": 6
+    },
+    {
+      "id": "q2",
+      "no": 2,
+      "indikator": "Formulating Situations Mathematically",
+      "indikator_arti": "Memilih informasi penting dan mengubah situasi nyata menjadi model matematika.",
+      "roles": [
+        {
+          "id": "jumlah",
+          "label": "Jumlah barang"
+        },
+        {
+          "id": "beli",
+          "label": "Harga beli seluruhnya"
+        },
+        {
+          "id": "persen",
+          "label": "Persentase untung"
+        }
+      ],
+      "story": [
+        {
+          "t": "Seorang pedagang membeli "
+        },
+        {
+          "t": "15 kotak bekal",
+          "role": "jumlah"
+        },
+        {
+          "t": " dengan total harga "
+        },
+        {
+          "t": "Rp150.000",
+          "role": "beli"
+        },
+        {
+          "t": ". Pedagang tersebut ingin memperoleh keuntungan sebesar "
+        },
+        {
+          "t": "20%",
+          "role": "persen"
+        },
+        {
+          "t": " dari harga beli seluruh kotak bekal. Agar memperoleh keuntungan sesuai keinginannya, pedagang harus menentukan harga jual untuk setiap kotak bekal. Buatlah model matematika berdasarkan situasi tersebut, kemudian tentukan harga jual setiap kotak bekal!"
+        }
+      ],
+      "steps": [
+        {
+          "jenis": "pilihan",
+          "tahap": 2,
+          "judul": "Menentukan model keuntungan",
+          "tanya": "Model matematika mana yang tepat untuk keuntungan?",
+          "opsi": [
+            {
+              "t": "keuntungan = persentase keuntungan × jumlah barang",
+              "why": "Persentase untung diambil dari harga beli seluruhnya, bukan dari jumlah barang."
+            },
+            {
+              "t": "keuntungan = persentase keuntungan × harga beli",
+              "why": null
+            },
+            {
+              "t": "keuntungan = persentase keuntungan × harga jual",
+              "why": "Di soal, 20% dihitung dari harga beli, bukan harga jual."
+            }
+          ],
+          "jawab": 1,
+          "h1": "Baca lagi: 20% dari apa?",
+          "h2": "Keuntungan 20% dari harga beli seluruh kotak.",
+          "jelas": "keuntungan = persentase keuntungan × harga beli."
+        },
+        {
+          "jenis": "isian",
+          "tahap": 3,
+          "judul": "Menghitung keuntungan",
+          "tanya": "Berapa keuntungan yang diinginkan?",
+          "fields": [
+            {
+              "label": "Keuntungan",
+              "jawab": 30000,
+              "awalan": "Rp",
+              "akhiran": "",
+              "salah": {
+                "3000": "Cek lagi: 20% sama dengan 0,2. Kalikan 0,2 × 150.000.",
+                "170000": "Itu hasil menjumlahkan. Keuntungan = 20% × harga beli."
+              }
+            }
+          ],
+          "h1": "Keuntungan = 20% × Rp150.000.",
+          "h2": "20% = 20/100 = 0,2. Hitung 0,2 × 150.000.",
+          "jelas": "20% × 150.000 = Rp30.000."
+        },
+        {
+          "jenis": "isian",
+          "tahap": 4,
+          "judul": "Menentukan total harga jual",
+          "tanya": "Berapa total harga jual seluruh kotak?",
+          "fields": [
+            {
+              "label": "Total harga jual",
+              "jawab": 180000,
+              "awalan": "Rp",
+              "akhiran": "",
+              "salah": {
+                "30000": "Itu keuntungannya. Total harga jual = harga beli + keuntungan."
+              }
+            }
+          ],
+          "h1": "Total harga jual = harga beli + keuntungan.",
+          "h2": "Hitung 150.000 + 30.000.",
+          "jelas": "150.000 + 30.000 = Rp180.000."
+        },
+        {
+          "jenis": "pilihan",
+          "tahap": 5,
+          "judul": "Menentukan model harga jual setiap kotak",
+          "tanya": "Model mana yang tepat untuk harga jual setiap kotak?",
+          "opsi": [
+            {
+              "t": "total harga jual × jumlah barang",
+              "why": "Mengalikan membuat angkanya makin besar. Harga per kotak didapat dengan membagi."
+            },
+            {
+              "t": "keuntungan ÷ jumlah barang",
+              "why": "Itu keuntungan tiap kotak, bukan harga jual tiap kotak."
+            },
+            {
+              "t": "total harga jual ÷ jumlah barang",
+              "why": null
+            }
+          ],
+          "jawab": 2,
+          "h1": "Total harga jual dibagi rata ke semua kotak.",
+          "h2": "Bagi total harga jual dengan 15.",
+          "jelas": "harga jual setiap kotak = total harga jual ÷ jumlah barang."
+        },
+        {
+          "jenis": "isian",
+          "tahap": 6,
+          "judul": "Menghitung harga jual setiap kotak",
+          "tanya": "Berapa harga jual setiap kotak bekal?",
+          "fields": [
+            {
+              "label": "Harga jual per kotak",
+              "jawab": 12000,
+              "awalan": "Rp",
+              "akhiran": "",
+              "salah": {
+                "180000": "Itu total harga jual semua kotak. Bagi dengan jumlah kotak (15).",
+                "10000": "Itu harga beli per kotak (150.000 ÷ 15). Harga jual harus lebih tinggi karena ada untung."
+              }
+            }
+          ],
+          "h1": "Harga jual per kotak = total harga jual ÷ 15.",
+          "h2": "Hitung 180.000 ÷ 15.",
+          "jelas": "180.000 ÷ 15 = Rp12.000. Setiap kotak bekal harus dijual Rp12.000."
+        }
+      ],
+      "solution": [
+        "Diketahui: 15 kotak, harga beli seluruhnya Rp150.000, untung 20%.",
+        "Model: keuntungan = persentase untung × harga beli.",
+        "Keuntungan = 20% × 150.000 = Rp30.000.",
+        "Total harga jual = 150.000 + 30.000 = Rp180.000.",
+        "Model: harga jual per kotak = total harga jual ÷ jumlah barang.",
+        "Harga jual per kotak = 180.000 ÷ 15 = Rp12.000."
+      ],
+      "mark_hints": [
+        "Baca kata di dekat setiap angka. Tanyakan: angka ini menunjukkan apa?",
+        "Harga beli = uang keluar untuk membeli. Harga jual = uang masuk dari penjualan. Perhatikan juga jumlah barang dan persen."
+      ],
+      "steps_total": 6
+    },
+    {
+      "id": "q3",
+      "no": 3,
+      "indikator": "Employing Mathematical Concepts, Facts, and Procedures",
+      "indikator_arti": "Memilih dan memakai operasi serta prosedur untuk mendapat solusi.",
+      "roles": [
+        {
+          "id": "jumlah",
+          "label": "Jumlah barang"
+        },
+        {
+          "id": "beli",
+          "label": "Harga beli per botol"
+        },
+        {
+          "id": "jual",
+          "label": "Harga jual per botol"
+        }
+      ],
+      "story": [
+        {
+          "t": "Seorang pedagang membeli "
+        },
+        {
+          "t": "24 botol",
+          "role": "jumlah"
+        },
+        {
+          "t": " minuman dengan harga "
+        },
+        {
+          "t": "Rp8.000",
+          "role": "beli"
+        },
+        {
+          "t": " untuk setiap botol. Seluruh minuman tersebut berhasil dijual dengan harga "
+        },
+        {
+          "t": "Rp9.000",
+          "role": "jual"
+        },
+        {
+          "t": " per botol. Berdasarkan informasi tersebut, hitunglah: a. Total harga beli seluruh minuman. b. Total hasil penjualan. c. Besar keuntungan yang diperoleh. d. Persentase keuntungan yang diperoleh pedagang. Tunjukkan langkah perhitunganmu!"
+        }
+      ],
+      "steps": [
+        {
+          "jenis": "isian",
+          "tahap": 2,
+          "judul": "Menghitung total harga beli",
+          "tanya": "a. Berapa total harga beli seluruh minuman?",
+          "fields": [
+            {
+              "label": "Total harga beli",
+              "jawab": 192000,
+              "awalan": "Rp",
+              "akhiran": "",
+              "salah": {
+                "32": "Itu hasil menjumlahkan 24 + 8. Kalikan jumlah botol dengan harga per botol."
+              }
+            }
+          ],
+          "h1": "Total = jumlah botol × harga beli per botol.",
+          "h2": "Hitung 24 × 8.000.",
+          "jelas": "24 × 8.000 = Rp192.000."
+        },
+        {
+          "jenis": "isian",
+          "tahap": 3,
+          "judul": "Menghitung total hasil penjualan",
+          "tanya": "b. Berapa total hasil penjualan?",
+          "fields": [
+            {
+              "label": "Total hasil penjualan",
+              "jawab": 216000,
+              "awalan": "Rp",
+              "akhiran": "",
+              "salah": {
+                "9000": "Itu harga jual satu botol. Kalikan dengan 24 botol."
+              }
+            }
+          ],
+          "h1": "Total = jumlah botol × harga jual per botol.",
+          "h2": "Hitung 24 × 9.000.",
+          "jelas": "24 × 9.000 = Rp216.000."
+        },
+        {
+          "jenis": "isian",
+          "tahap": 4,
+          "judul": "Menghitung keuntungan",
+          "tanya": "c. Berapa besar keuntungan yang diperoleh?",
+          "fields": [
+            {
+              "label": "Keuntungan",
+              "jawab": 24000,
+              "awalan": "Rp",
+              "akhiran": "",
+              "salah": {
+                "1000": "Itu untung satu botol. Pertanyaannya untung seluruh minuman.",
+                "408000": "Itu hasil menjumlahkan. Untung dicari dengan mengurangi."
+              }
+            }
+          ],
+          "h1": "Untung = total hasil penjualan − total harga beli.",
+          "h2": "Hitung 216.000 − 192.000.",
+          "jelas": "216.000 − 192.000 = Rp24.000."
+        },
+        {
+          "jenis": "pilihan",
+          "tahap": 5,
+          "judul": "Menyusun perhitungan persentase",
+          "tanya": "d. Susunan mana yang tepat untuk persentase keuntungan?",
+          "opsi": [
+            {
+              "t": "(24.000 ÷ 192.000) × 100%",
+              "why": null
+            },
+            {
+              "t": "(24.000 ÷ 216.000) × 100%",
+              "why": "Pembaginya harus harga beli (192.000), bukan hasil penjualan."
+            },
+            {
+              "t": "(216.000 ÷ 192.000) × 100%",
+              "why": "Itu perbandingan hasil penjualan terhadap harga beli, bukan persentase untung."
+            }
+          ],
+          "jawab": 0,
+          "h1": "Persentase untung = untung ÷ harga beli × 100%.",
+          "h2": "Harga beli seluruhnya adalah Rp192.000.",
+          "jelas": "Persentase untung = (24.000 ÷ 192.000) × 100%."
+        },
+        {
+          "jenis": "isian",
+          "tahap": 6,
+          "judul": "Menyelesaikan perhitungan",
+          "tanya": "Berapa persentase keuntungan pedagang?",
+          "fields": [
+            {
+              "label": "Persentase untung",
+              "jawab": 12.5,
+              "awalan": "",
+              "akhiran": "%",
+              "salah": {
+                "11.11": "Kamu membagi dengan total hasil penjualan (216.000). Pembaginya harga beli (192.000).",
+                "0.125": "Itu bentuk pecahannya. Kalikan 100% untuk mendapat persen."
+              }
+            }
+          ],
+          "h1": "Hitung 24.000 ÷ 192.000, lalu kali 100%.",
+          "h2": "24.000 ÷ 192.000 = 0,125.",
+          "jelas": "0,125 × 100% = 12,5%. Untungnya Rp24.000 atau 12,5%."
+        }
+      ],
+      "solution": [
+        "Diketahui: 24 botol, beli Rp8.000 per botol, jual Rp9.000 per botol.",
+        "Total harga beli = 24 × 8.000 = Rp192.000.",
+        "Total hasil penjualan = 24 × 9.000 = Rp216.000.",
+        "Keuntungan = 216.000 − 192.000 = Rp24.000.",
+        "Persentase untung = (24.000 ÷ 192.000) × 100%.",
+        "Hasilnya 12,5%. Jadi untungnya Rp24.000 atau 12,5%."
+      ],
+      "mark_hints": [
+        "Baca kata di dekat setiap angka. Tanyakan: angka ini menunjukkan apa?",
+        "Harga beli = uang keluar untuk membeli. Harga jual = uang masuk dari penjualan. Perhatikan juga jumlah barang dan persen."
+      ],
+      "steps_total": 6
+    },
+    {
+      "id": "q4",
+      "no": 4,
+      "indikator": "Interpreting, Applying, and Evaluating Mathematical Outcomes",
+      "indikator_arti": "Menafsirkan hasil, menilai kewajaran, dan mengambil keputusan.",
+      "roles": [
+        {
+          "id": "beli",
+          "label": "Harga beli"
+        },
+        {
+          "id": "jual",
+          "label": "Harga jual"
+        }
+      ],
+      "story": [
+        {
+          "t": "Dina membeli sebuah sepatu seharga "
+        },
+        {
+          "t": "Rp200.000",
+          "role": "beli"
+        },
+        {
+          "t": ". Beberapa hari kemudian, sepatu tersebut dijual kembali dengan harga "
+        },
+        {
+          "t": "Rp230.000",
+          "role": "jual"
+        },
+        {
+          "t": ". Dina menghitung keuntungan sebesar Rp30.000, kemudian menentukan persentase keuntungan dengan cara membagi keuntungan tersebut dengan harga jual, lalu mengalikannya dengan 100%. Dina memperoleh hasil sekitar 13,04%. Apakah cara perhitungan Dina sudah tepat untuk menentukan persentase keuntungan? Evaluasilah perhitungan tersebut dan tentukan persentase keuntungan yang seharusnya diperoleh Dina. Jelaskan alasanmu!"
+        }
+      ],
+      "steps": [
+        {
+          "jenis": "isian",
+          "tahap": 2,
+          "judul": "Menghitung keuntungan",
+          "tanya": "Periksa dulu: berapa keuntungan Dina?",
+          "fields": [
+            {
+              "label": "Keuntungan",
+              "jawab": 30000,
+              "awalan": "Rp",
+              "akhiran": "",
+              "salah": {
+                "430000": "Itu hasil menjumlahkan. Untung dicari dengan mengurangi."
+              }
+            }
+          ],
+          "h1": "Untung = harga jual − harga beli.",
+          "h2": "Hitung 230.000 − 200.000.",
+          "jelas": "230.000 − 200.000 = Rp30.000. Hitungan Dina untuk bagian ini benar."
+        },
+        {
+          "jenis": "pilihan",
+          "tahap": 3,
+          "judul": "Mengidentifikasi rumus persentase",
+          "tanya": "Rumus persentase keuntungan yang tepat adalah...",
+          "opsi": [
+            {
+              "t": "(keuntungan ÷ harga beli) × 100%",
+              "why": null
+            },
+            {
+              "t": "(keuntungan ÷ harga jual) × 100%",
+              "why": "Ini cara Dina. Pembaginya bukan harga jual."
+            },
+            {
+              "t": "(harga jual ÷ harga beli) × 100%",
+              "why": "Itu bukan persentase untung. Yang dibandingkan adalah keuntungannya."
+            }
+          ],
+          "jawab": 0,
+          "h1": "Untung dibandingkan dengan modal awal.",
+          "h2": "Modal awal disebut harga beli.",
+          "jelas": "Persentase keuntungan = (keuntungan ÷ harga beli) × 100%."
+        },
+        {
+          "jenis": "pilihan",
+          "tahap": 4,
+          "judul": "Menjelaskan letak kesalahan",
+          "tanya": "Apa yang keliru dari cara Dina?",
+          "opsi": [
+            {
+              "t": "Dina membagi dengan harga jual. Seharusnya dengan harga beli.",
+              "why": null
+            },
+            {
+              "t": "Dina salah menghitung keuntungan. Seharusnya Rp20.000.",
+              "why": "Keuntungan Dina sudah benar, yaitu Rp30.000."
+            },
+            {
+              "t": "Dina tidak perlu mengalikan dengan 100%.",
+              "why": "Mengalikan 100% itu perlu agar hasilnya berbentuk persen."
+            }
+          ],
+          "jawab": 0,
+          "h1": "Bandingkan pembagi Dina dengan rumus di tahap 3.",
+          "h2": "Dina memakai Rp230.000 sebagai pembagi.",
+          "jelas": "Dina memakai harga jual sebagai pembagi. Seharusnya harga beli."
+        },
+        {
+          "jenis": "isian",
+          "tahap": 5,
+          "judul": "Menghitung persentase yang benar",
+          "tanya": "Berapa persentase keuntungan yang seharusnya?",
+          "fields": [
+            {
+              "label": "Persentase untung",
+              "jawab": 15,
+              "awalan": "",
+              "akhiran": "%",
+              "salah": {
+                "13.04": "Itu hasil Dina, yang membagi dengan harga jual. Bagi dengan harga beli (200.000)."
+              }
+            }
+          ],
+          "h1": "Persentase = 30.000 ÷ harga beli × 100%.",
+          "h2": "Hitung 30.000 ÷ 200.000 = 0,15.",
+          "jelas": "30.000 ÷ 200.000 × 100% = 15%."
+        },
+        {
+          "jenis": "pilihan",
+          "tahap": 6,
+          "judul": "Menyimpulkan",
+          "tanya": "Apa kesimpulan evaluasimu?",
+          "opsi": [
+            {
+              "t": "Cara Dina belum tepat. Persentase untung yang benar 15% karena untung dibandingkan dengan harga beli.",
+              "why": null
+            },
+            {
+              "t": "Cara Dina sudah tepat karena untung memang dibandingkan dengan harga jual.",
+              "why": "Persentase untung dibandingkan dengan harga beli (modal), bukan harga jual."
+            },
+            {
+              "t": "Cara Dina belum tepat. Persentase untung yang benar adalah 30%.",
+              "why": "30 itu dari Rp30.000, bukan persentasenya."
+            }
+          ],
+          "jawab": 0,
+          "h1": "Gabungkan hasil tahap 4 dan tahap 5.",
+          "h2": "Cara Dina keliru, hasil benarnya 15%.",
+          "jelas": "Cara Dina belum tepat. Yang benar 15% karena keuntungan dibandingkan dengan harga beli."
+        }
+      ],
+      "solution": [
+        "Diketahui: harga beli Rp200.000, harga jual Rp230.000.",
+        "Keuntungan = 230.000 − 200.000 = Rp30.000.",
+        "Rumus yang tepat: (keuntungan ÷ harga beli) × 100%.",
+        "Dina memakai harga jual sebagai pembagi, jadi hasilnya (13,04%) keliru.",
+        "Persentase yang benar = (30.000 ÷ 200.000) × 100% = 15%.",
+        "Kesimpulan: cara Dina belum tepat. Persentase untung yang benar adalah 15%."
+      ],
+      "mark_hints": [
+        "Baca kata di dekat setiap angka. Tanyakan: angka ini menunjukkan apa?",
+        "Harga beli = uang keluar untuk membeli. Harga jual = uang masuk dari penjualan. Perhatikan juga jumlah barang dan persen."
+      ],
+      "steps_total": 6
+    }
+  ],
+  "skor_maks": 24
+}
