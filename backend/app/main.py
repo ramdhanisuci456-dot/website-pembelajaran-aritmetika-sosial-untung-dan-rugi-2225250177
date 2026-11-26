@@ -3,7 +3,9 @@ import hashlib
 import hmac
 import os
 import re
+import secrets
 import time
+from typing import Literal
 
 from dotenv import load_dotenv
 from fastapi import Depends, FastAPI, Header, HTTPException
@@ -14,6 +16,7 @@ from sqlalchemy.orm import Session
 from .content import PASS_RATIO, QUESTION_INDEX, QUESTIONS, SKOR_MAKS_SOAL, content_payload
 from .database import Base, engine, get_db, migrate_student_name
 from .models import Attempt, MateriDone, Student
+from .tutor import local_tutor_reply
 
 load_dotenv()
 
@@ -21,7 +24,6 @@ SECRET_KEY = os.getenv("SECRET_KEY", "dev-secret-ubah-di-produksi").encode()
 TOKEN_TTL = 60 * 60 * 24 * 14  # 14 hari
 ALLOWED_CODES = {c.strip().upper() for c in os.getenv("ALLOWED_CODES", "").split(",") if c.strip()}
 CORS_ORIGINS = [o.strip() for o in os.getenv("CORS_ORIGINS", "*").split(",") if o.strip()]
-
 Base.metadata.create_all(bind=engine)
 migrate_student_name()
 
@@ -87,13 +89,36 @@ def build_progress(db: Session, student: Student) -> dict:
 # ---------- skema ----------
 class LoginIn(BaseModel):
     nama: str = Field(min_length=1, max_length=60)
-    kode_siswa: str = Field(min_length=3, max_length=12)
+    kode_siswa: str = Field(default="", max_length=12)
 
 
 class AttemptIn(BaseModel):
     question_id: str
     first_try: int = Field(ge=0)  # jumlah tahap benar pada percobaan pertama (skor 0-6)
     hints_used: int = Field(ge=0, default=0)
+
+
+class ChatTurn(BaseModel):
+    role: Literal["user", "model"]
+    text: str = Field(min_length=1, max_length=2000)
+
+
+class TutorState(BaseModel):
+    phase: Literal[
+        "awal", "identifikasi", "bandingkan", "rumus", "hitung", "bukti",
+        "rumus_persen", "hitung_persen", "bukti_persen", "refleksi",
+    ] = "awal"
+    intent: Literal["untung", "rugi", "impas"] = "untung"
+    harga_beli: int | None = Field(default=None, ge=0, le=1_000_000_000_000)
+    harga_jual: int | None = Field(default=None, ge=0, le=1_000_000_000_000)
+    wants_percent: bool = False
+    hint_level: int = Field(default=0, ge=0, le=3)
+
+
+class ChatIn(BaseModel):
+    message: str = Field(min_length=1, max_length=1000)
+    history: list[ChatTurn] = Field(default_factory=list, max_length=12)
+    state: TutorState = Field(default_factory=TutorState)
 
 
 # ---------- endpoint ----------
@@ -112,18 +137,37 @@ def health():
     return {"status": "ok"}
 
 
+@app.post("/api/chat")
+def chat(body: ChatIn, _: Student = Depends(current_student)):
+    state = {
+        "phase": body.state.phase,
+        "intent": body.state.intent,
+        "harga_beli": body.state.harga_beli,
+        "harga_jual": body.state.harga_jual,
+        "wants_percent": body.state.wants_percent,
+        "hint_level": body.state.hint_level,
+    }
+    return local_tutor_reply(body.message, state)
+
+
 @app.post("/api/auth/login")
 def login(body: LoginIn, db: Session = Depends(get_db)):
     name = body.nama.strip()
     if not name:
         raise HTTPException(status_code=422, detail="Nama tidak boleh kosong.")
     code = body.kode_siswa.strip().upper()
-    if not re.fullmatch(r"[A-Z0-9]{3,12}", code):
-        raise HTTPException(status_code=422, detail="Kode siswa hanya boleh huruf dan angka (3-12 karakter).")
-    if ALLOWED_CODES and code not in ALLOWED_CODES:
-        raise HTTPException(status_code=403, detail="Kode siswa tidak dikenal. Tanyakan ke gurumu.")
-    student = db.query(Student).filter(Student.code == code).first()
+    if code:
+        if not re.fullmatch(r"[A-Z0-9]{3,12}", code):
+            raise HTTPException(status_code=422, detail="Kode siswa hanya boleh huruf dan angka (3-12 karakter).")
+        if ALLOWED_CODES and code not in ALLOWED_CODES:
+            raise HTTPException(status_code=403, detail="Kode siswa tidak dikenal. Tanyakan ke gurumu.")
+        student = db.query(Student).filter(Student.code == code).first()
+    else:
+        student = db.query(Student).filter(Student.name.ilike(name)).first()
     if not student:
+        if not code:
+            code = f"N{secrets.token_hex(5).upper()}"
+            code = code[:12]
         student = Student(code=code, name=name)
         db.add(student)
         db.commit()
@@ -133,7 +177,7 @@ def login(body: LoginIn, db: Session = Depends(get_db)):
         db.commit()
     elif student.name.casefold() != name.casefold():
         raise HTTPException(status_code=409, detail="Nama tidak cocok dengan kode siswa ini.")
-    return {"token": make_token(student.id), "kode": student.code, "nama": student.name}
+    return {"token": make_token(student.id), "studentId": student.id, "kode": student.code, "nama": student.name}
 
 
 @app.get("/api/content")

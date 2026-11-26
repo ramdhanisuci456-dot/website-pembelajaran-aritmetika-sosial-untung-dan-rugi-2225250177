@@ -7,6 +7,7 @@ beban kognitif (Intrinsic, Extraneous, Germane) dengan tujuan meningkatkan **lit
 - **Backend**: Python, FastAPI + SQLAlchemy
 - **Database**: SQLite (lokal) atau Postgres Supabase (online)
 - **Akses belajar**: nama siswa wajib diisi dan dicatat di Supabase; progres dan skor game tersimpan lokal per ID siswa
+- **Kak Uci**: tutor lokal bertahap dengan pendekatan RMT; tidak memerlukan API key
 - **Audio**: musik ceria hanya mulai setelah tombol musik ditekan; efek benar/salah memprioritaskan suara jawaban
 - **Ilustrasi**: sambutan Kak Uci memakai ilustrasi 2D; permainan memakai adegan 3D bergerak yang berubah sesuai kartu
 
@@ -43,6 +44,10 @@ pytest
 ```
 
 ## Backend dan Supabase
+
+Chat Kak Uci membimbing siswa mengidentifikasi informasi, membandingkan harga, memilih rumus, menghitung,
+memberi alasan, lalu merefleksikan strategi. Tutor tidak langsung membocorkan hasil akhir dan bekerja tanpa
+mengirim percakapan ke layanan AI eksternal. Rinciannya ada di [docs/RMT.md](./docs/RMT.md).
 
 Nama siswa dikirim ke fungsi database Supabase dengan publishable key dan hasilnya memberi ID siswa. Database menerima
 hanya pendaftaran nama melalui fungsi terbatas; tabel tidak dibuka untuk pembacaan publik. Nama saja tidak bisa

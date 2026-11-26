@@ -38,6 +38,20 @@ input:focus { outline: none; border-color: var(--primary); box-shadow: 0 0 0 3px
 .music-toggle { background: #fff4f7; color: var(--text); border: 1px solid #f5d5e2; }
 .global-music-toggle { position: fixed; z-index: 20; top: 12px; right: max(16px, calc((100vw - 560px) / 2 + 16px)); }
 .student-chip { position: fixed; z-index: 20; top: 12px; left: max(16px, calc((100vw - 560px) / 2 + 16px)); max-width: calc(100vw - 180px); min-height: 40px; display: flex; align-items: center; overflow: hidden; white-space: nowrap; text-overflow: ellipsis; padding: 6px 12px; border: 1px solid var(--line); border-radius: 999px; background: rgba(255,255,255,.92); box-shadow: 0 6px 18px rgba(146,128,189,.12); font-weight: 700; font-size: .88rem; }
+.sr-only { position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px; overflow: hidden; clip: rect(0,0,0,0); white-space: nowrap; border: 0; }
+.kak-chat { position: fixed; z-index: 30; right: max(16px, calc((100vw - 560px) / 2 + 16px)); bottom: max(16px, env(safe-area-inset-bottom)); display: flex; flex-direction: column; align-items: flex-end; gap: 10px; }
+.kak-chat-toggle { width: auto !important; min-height: 52px; border-radius: 999px; box-shadow: 0 8px 24px rgba(111,82,217,.3); }
+.kak-chat-panel { display: flex; flex-direction: column; width: min(390px, calc(100vw - 32px)); height: min(520px, calc(100dvh - 100px)); background: var(--card); border: 1px solid var(--line); border-radius: 20px; box-shadow: 0 16px 48px rgba(49,42,71,.22); overflow: hidden; }
+.kak-chat-header { display: flex; align-items: center; justify-content: space-between; gap: 10px; padding: 12px 14px; background: linear-gradient(135deg, rgba(249,199,217,.5), rgba(201,240,234,.9)); border-bottom: 1px solid var(--line); }
+.kak-chat-header .muted { font-size: .8rem; }
+.kak-chat-messages { display: flex; flex: 1; flex-direction: column; gap: 8px; overflow-y: auto; padding: 12px; }
+.kak-chat-message { max-width: 88%; padding: 9px 12px; margin: 0; border-radius: 14px; white-space: pre-wrap; overflow-wrap: anywhere; font-size: .94rem; }
+.kak-chat-message.from-kak { align-self: flex-start; background: #f3edff; }
+.kak-chat-message.from-user { align-self: flex-end; background: #e6f7f2; }
+.kak-chat-error { margin: 0; padding: 0 12px 8px; font-size: .85rem; }
+.kak-chat-form { display: flex; gap: 8px; align-items: center; padding: 10px; border-top: 1px solid var(--line); }
+.kak-chat-input { min-width: 0; margin: 0; padding: 10px 12px; text-transform: none; }
+.kak-chat-send { width: auto !important; min-height: 44px; padding: 8px 12px; }
 .sticky-bottom { margin-top: 18px; }
 
 .welcome-page { display: flex; flex-direction: column; gap: 16px; }

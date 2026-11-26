@@ -7,6 +7,7 @@ import Latihan from './components/Latihan.jsx';
 import Soal from './components/Soal.jsx';
 import Game from './components/Game.jsx';
 import Kamus from './components/Kamus.jsx';
+import KakUciChat from './components/KakUciChat.jsx';
 import { isAudioSupported, startAmbientMusic, stopAmbientMusic } from './audio.js';
 
 const PROGRESS_KEY = 'untung-rugi-progress';
@@ -267,6 +268,7 @@ export default function App() {
       </button>
       {view}
       {kamus && <Kamus glossary={content.glossary} onClose={() => setKamus(false)} />}
+      {student && <KakUciChat key={student.studentId} />}
     </>
   );
 }

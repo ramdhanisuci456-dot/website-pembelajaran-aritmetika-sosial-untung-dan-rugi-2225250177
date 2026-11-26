@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { registerStudent } from '../supabase.js';
+import { api, setToken } from '../api.js';
 import KakUci from './KakUci.jsx';
 
 export default function Login({ onLogin }) {
@@ -12,8 +12,9 @@ export default function Login({ onLogin }) {
     setErr('');
     setBusy(true);
     try {
-      const student = await registerStudent(nama.trim());
-      onLogin(student);
+      const result = await api.login(nama.trim());
+      setToken(result.token);
+      onLogin({ studentId: result.studentId, name: result.nama });
     } catch (error) {
       setErr(error.message);
     } finally {

@@ -28,10 +28,11 @@ async function req(path, { method = 'GET', body } = {}) {
 }
 
 export const api = {
-  login: (kode_siswa) => req('/auth/login', { method: 'POST', body: { kode_siswa } }),
+  login: (nama, kode_siswa = '') => req('/auth/login', { method: 'POST', body: { nama, kode_siswa } }),
   content: () => req('/content'),
   me: () => req('/me'),
   saveAttempt: (question_id, first_try, hints_used) =>
     req('/attempts', { method: 'POST', body: { question_id, first_try, hints_used } }),
   materiDone: (id) => req(`/materi/${id}/done`, { method: 'POST' }),
+  chat: (message, history, state) => req('/chat', { method: 'POST', body: { message, history, state } }),
 };
