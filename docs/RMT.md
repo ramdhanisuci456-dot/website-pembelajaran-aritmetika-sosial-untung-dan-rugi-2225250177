@@ -17,5 +17,6 @@ Kak Uci hanya memberi satu pertanyaan utama per giliran. Jika siswa belum berhas
 bertahap dari mengarahkan perhatian, memberi contoh serupa, hingga menyebutkan operasi tanpa menghitung
 hasilnya. Jawaban akhir baru dikonfirmasi setelah siswa mencoba menghitung sendiri.
 
-Tutor berjalan lokal tanpa mengirim percakapan ke layanan AI eksternal. Karena itu, bimbingannya dibatasi
-pada alur dan materi untung-rugi yang ditanamkan di aplikasi.
+Tutor berjalan langsung di frontend tanpa API key atau layanan AI eksternal. Karena itu, bimbingannya dibatasi
+pada alur dan materi untung-rugi yang ditanamkan di aplikasi, tetapi tetap dapat digunakan melalui deployment
+publik tanpa backend terpisah.

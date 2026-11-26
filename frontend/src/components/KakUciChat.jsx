@@ -1,10 +1,10 @@
 import { useState } from 'react';
-import { api } from '../api.js';
+import { localTutorReply } from '../tutor.js';
 
 export default function KakUciChat() {
   const [open, setOpen] = useState(false);
   const [messages, setMessages] = useState([
-    { role: 'model', text: 'Hai! Kita pecahkan soal untung-rugi sedikit demi sedikit. Apa yang ingin kamu tanyakan?', sent: false },
+    { role: 'model', text: 'Hai! Kita pecahkan soal untung-rugi sedikit demi sedikit. Apa yang ingin kamu tanyakan?' },
   ]);
   const [tutorState, setTutorState] = useState({
     phase: 'awal',
@@ -15,33 +15,20 @@ export default function KakUciChat() {
     hint_level: 0,
   });
   const [message, setMessage] = useState('');
-  const [error, setError] = useState('');
-  const [busy, setBusy] = useState(false);
 
-  async function send(event) {
+  function send(event) {
     event.preventDefault();
     const text = message.trim();
-    if (!text || busy) return;
+    if (!text) return;
 
     setMessage('');
-    setError('');
-    setBusy(true);
-    const history = messages.filter((item) => item.sent).slice(-10)
-      .map(({ role, text: content }) => ({ role, text: content }));
-    const userMessage = { role: 'user', text, sent: false };
-    setMessages((current) => [...current, userMessage]);
-    try {
-      const result = await api.chat(text, history, tutorState);
-      setTutorState(result.state);
-      setMessages((current) => [
-        ...current.map((item) => item === userMessage ? { ...item, sent: true } : item),
-        { role: 'model', text: result.reply, rmtStage: result.rmt_stage, sent: true },
-      ]);
-    } catch (requestError) {
-      setError(requestError.message);
-    } finally {
-      setBusy(false);
-    }
+    const result = localTutorReply(text, tutorState);
+    setTutorState(result.state);
+    setMessages((current) => [
+      ...current,
+      { role: 'user', text },
+      { role: 'model', text: result.reply, rmtStage: result.rmt_stage },
+    ]);
   }
 
   return (
@@ -64,9 +51,7 @@ export default function KakUciChat() {
                 {item.rmtStage && <><br /><small className="muted">Tahap berpikir: {item.rmtStage}</small></>}
               </p>
             ))}
-            {busy && <p className="kak-chat-message from-kak">Kak Uci sedang berpikir…</p>}
           </div>
-          {error && <p className="error kak-chat-error" role="alert">{error}</p>}
           <form className="kak-chat-form" onSubmit={send}>
             <label className="sr-only" htmlFor="kak-chat-input">Tulis pertanyaan untuk Kak Uci</label>
             <input
@@ -76,9 +61,8 @@ export default function KakUciChat() {
               onChange={(event) => setMessage(event.target.value)}
               placeholder="Tulis pertanyaan..."
               maxLength={1000}
-              disabled={busy}
             />
-            <button className="btn primary kak-chat-send" type="submit" disabled={busy || !message.trim()}>
+            <button className="btn primary kak-chat-send" type="submit" disabled={!message.trim()}>
               Kirim
             </button>
           </form>

@@ -43,40 +43,22 @@ cd backend
 pytest
 ```
 
-## Backend dan Supabase
+## Tutor dan deployment
 
 Chat Kak Uci membimbing siswa mengidentifikasi informasi, membandingkan harga, memilih rumus, menghitung,
-memberi alasan, lalu merefleksikan strategi. Tutor tidak langsung membocorkan hasil akhir dan bekerja tanpa
-mengirim percakapan ke layanan AI eksternal. Rinciannya ada di [docs/RMT.md](./docs/RMT.md).
+memberi alasan, lalu merefleksikan strategi. Tutor RMT berjalan langsung di frontend tanpa API key, Render,
+Supabase, atau layanan AI eksternal. Rinciannya ada di [docs/RMT.md](./docs/RMT.md).
 
-Nama siswa dikirim ke fungsi database Supabase dengan publishable key dan hasilnya memberi ID siswa. Database menerima
-hanya pendaftaran nama melalui fungsi terbatas; tabel tidak dibuka untuk pembacaan publik. Nama saja tidak bisa
-membedakan siswa dengan nama sama, jadi setiap pendaftaran baru mendapat ID tersendiri. Progres latihan dan permainan
-disimpan di browser/perangkat berdasarkan ID tersebut, bukan di Supabase, dan tidak disinkronkan antarperangkat.
-Gunakan tombol **Ganti siswa** di beranda pada perangkat bersama. Jangan pernah menaruh kunci
-`service_role` atau password database di frontend.
+Nama siswa dan progres latihan/permainan disimpan di browser perangkat masing-masing; keduanya tidak
+disinkronkan antarperangkat. Gunakan tombol **Ganti siswa** pada perangkat bersama.
 
-1. Pada Supabase SQL Editor, jalankan migrasi [001_add_student_name.sql](./backend/migrations/001_add_student_name.sql)
-   untuk menambahkan kolom nama siswa tanpa menghapus data yang ada.
-2. Jalankan juga [002_allow_name_only_student_entry.sql](./backend/migrations/002_allow_name_only_student_entry.sql)
-   untuk mengizinkan pendaftaran nama tanpa kode melalui fungsi database.
-3. Dari **Project Settings > API Keys**, gunakan project URL dan **publishable key**. Jangan gunakan `service_role`
-   atau secret key di frontend.
-4. Dari **Project Settings > Database > Connection string**, salin connection string **Session pooler** (URI)
-   bila ingin memakai backend FastAPI untuk fitur lain.
-   Simpan password database dengan aman.
-5. Deploy backend dari direktori ini ke Render menggunakan [render.yaml](./render.yaml). Saat Render meminta
-   `DATABASE_URL`, isi connection string Supabase tersebut. `SECRET_KEY` dibuat otomatis.
-6. Setelah backend aktif, pastikan `https://<alamat-backend>/api/health` menampilkan `{"status":"ok"}`.
-7. Deploy frontend ke Vercel dengan **Root Directory** `frontend`. Isi environment variables
-   `VITE_SUPABASE_URL` dan `VITE_SUPABASE_PUBLISHABLE_KEY`, lalu redeploy frontend. Nama proyek yang disarankan:
-   `aplikasi-pembelajaran-aritmetika-sosial-untung-dan-rugi-2225250177`.
-8. Setelah mendapatkan URL Vercel, atur `CORS_ORIGINS` di Render ke URL frontend itu (misalnya
-   `https://<nama-proyek>.vercel.app`), lalu redeploy backend.
+Untuk hosting publik di Vercel:
+1. Hubungkan repositori ini dan atur **Root Directory** ke `frontend`.
+2. Jalankan build dengan `npm run build`; tidak perlu environment variables untuk fitur belajar.
+3. Hubungkan domain Vercel yang diinginkan. Deployment frontend dapat dibuka dari jaringan Wi-Fi maupun data seluler.
 
-URL Vercel biasanya menggunakan tanda hubung, bukan garis bawah; nama tampilan dapat tetap memakai
-`aplikasi_pembelajaran_aritmetika_sosial_untung_dan_rugi_2225250177`. Hosting publik dan project Supabase
-baru benar-benar tersedia setelah deployment dilakukan menggunakan akun pemilik.
+Backend FastAPI di `backend/` tetap tersedia untuk pengembangan fitur server terpisah, tetapi tidak diperlukan
+oleh frontend publik saat ini. Jangan menaruh `DATABASE_URL`, `SECRET_KEY`, atau kredensial database di frontend.
 
 ## Struktur
 ```
