@@ -51,7 +51,7 @@ export async function registerStudent(name) {
     );
   }
 
-  return { studentId, name };
+  return { studentId, name, registeredWithSupabase: true };
 }
 
 async function callSupabaseFunction(functionName, body) {

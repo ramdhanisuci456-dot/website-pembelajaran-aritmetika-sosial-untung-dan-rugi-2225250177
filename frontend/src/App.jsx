@@ -29,6 +29,7 @@ function readStudent() {
 
     if (
       !isValidStudentId(student.studentId) ||
+      student.registeredWithSupabase !== true ||
       typeof student.name !== 'string' ||
       !student.name.trim()
     ) {
@@ -76,8 +77,9 @@ function migrateLegacyStudentProgress(nextStudent) {
 
     const previousStudent = JSON.parse(savedStudent);
     if (
+      previousStudent.registeredWithSupabase === true ||
       !Number.isSafeInteger(previousStudent.studentId) ||
-      previousStudent.studentId <= 2_147_483_647 ||
+      previousStudent.studentId < 1 ||
       typeof previousStudent.name !== 'string' ||
       previousStudent.name.trim().toLowerCase() !==
         nextStudent.name.trim().toLowerCase()
