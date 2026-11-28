@@ -1,3 +1,4 @@
+
 import { useEffect, useRef, useState } from 'react';
 import { playFail, playSuccess } from '../audio.js';
 import { PALET, parseAngka } from '../utils.js';
@@ -38,6 +39,7 @@ function Tandai({ q, onDone }) {
     setWrong([]);
     setMarks((m) => ({ ...m, [i]: cycle[(cycle.indexOf(m[i] || null) + 1) % cycle.length] }));
   }
+
   function check() {
     const bad = tappable.filter((i) => (marks[i] || null) !== q.story[i].role);
     if (bad.length === 0) {
@@ -115,7 +117,10 @@ function Langkah({ step, total, onDone }) {
     const newErrs = [];
     step.fields.forEach((f, i) => {
       const n = parseAngka(vals[i]);
-      if (Number.isNaN(n)) { next[i] = 'Tulis angka dulu.'; return; }
+      if (Number.isNaN(n)) {
+        next[i] = 'Tulis angka dulu.';
+        return;
+      }
       if (Math.abs(n - f.jawab) < 0.01) return;
       const key = Object.keys(f.salah).find((k) => Math.abs(Number(k) - n) < 0.01);
       next[i] = key ? f.salah[key] : 'Belum tepat. Periksa lagi perhitunganmu.';
@@ -192,7 +197,7 @@ function Langkah({ step, total, onDone }) {
 
 export default function Soal({ q, hasNext, onNext, onRetry, onBack, onProgress }) {
   const total = q.steps_total;
-  const [phase, setPhase] = useState(0); // 0 = tahap 1, 1..5 = tahap 2..6, total = ringkasan
+  const [phase, setPhase] = useState(0);
   const [log, setLog] = useState([]);
   const saved = useRef(false);
   const skor = log.filter((l) => l.first).length;
@@ -207,7 +212,15 @@ export default function Soal({ q, hasNext, onNext, onRetry, onBack, onProgress }
   useEffect(() => {
     if (phase === total && !saved.current) {
       saved.current = true;
-      onProgress({ questionId: q.id, score: skor });
+
+      onProgress({
+        questionId: q.id,
+        level: total,
+        stepsTotal: total,
+        firstTry: skor,
+        hintsUsed: hints,
+        score: skor,
+      });
     }
   }, [phase]); // eslint-disable-line
 

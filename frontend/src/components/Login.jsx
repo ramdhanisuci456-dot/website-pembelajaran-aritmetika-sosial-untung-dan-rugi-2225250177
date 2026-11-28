@@ -1,30 +1,7 @@
+
 import { useState } from 'react';
 import KakUci from './KakUci.jsx';
-
-const STUDENT_IDS_KEY = 'untung-rugi-student-ids';
-
-function getStudentId(name) {
-  const normalizedName = name.trim().toLowerCase();
-  const storedIds = localStorage.getItem(STUDENT_IDS_KEY);
-  const ids = storedIds ? JSON.parse(storedIds) : {};
-  if (!ids || typeof ids !== 'object' || Array.isArray(ids)) {
-    throw new Error('Data nama siswa di perangkat ini tidak valid. Coba bersihkan data situs lalu ulangi.');
-  }
-
-  if (Number.isSafeInteger(ids[normalizedName]) && ids[normalizedName] >= 0) {
-    return ids[normalizedName];
-  }
-
-  let studentId = Date.now();
-  if (globalThis.crypto?.getRandomValues) {
-    const random = new Uint32Array(2);
-    globalThis.crypto.getRandomValues(random);
-    studentId = random[0] * 0x200000 + (random[1] & 0x1fffff);
-  }
-  ids[normalizedName] = studentId;
-  localStorage.setItem(STUDENT_IDS_KEY, JSON.stringify(ids));
-  return studentId;
-}
+import { registerStudent } from '../supabase.js';
 
 export default function Login({ onLogin }) {
   const [nama, setNama] = useState('');
@@ -35,12 +12,13 @@ export default function Login({ onLogin }) {
     e.preventDefault();
     setErr('');
     setBusy(true);
+
     try {
       const name = nama.trim();
-      const studentId = getStudentId(name);
-      onLogin({ studentId, name });
+      const student = await registerStudent(name);
+      onLogin(student);
     } catch (error) {
-      setErr(error.message);
+      setErr(error.message || 'Nama belum berhasil didaftarkan. Coba lagi.');
     } finally {
       setBusy(false);
     }
